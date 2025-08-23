@@ -4,6 +4,7 @@ class Solution {
         int tot=n*(n+1)/2;
         for(int num:nums)
             tot-=num;
+         System.gc();
         return tot;
     }
 }
