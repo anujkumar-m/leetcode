@@ -1,27 +1,26 @@
 class Solution {
+    public String removeString(String s) {
+        char[] ch = s.toCharArray();
+        int l = 0, r = 0;
+        int n = s.length();
+        while(r < n){
+            if(ch[r] != '#'){
+                ch[l] = ch[r];
+                l++;
+                r++;
+            }
+            else{
+                r++;
+                if(l > 0)
+                l--;
+            }
+        }
+        return new String(ch,0,l);
+    }
     public boolean backspaceCompare(String s, String t) {
-         Stack<Character> st1 = new Stack<>();
-        Stack<Character> st2 = new Stack<>();
-
-        int n1=s.length();
-        int n2=t.length();
-        for(int i=0;i<n1;i++){
-            char ch=s.charAt(i);
-            if(ch=='#'){
-                if(!st1.isEmpty()) 
-            st1.pop();
-            }
-            else st1.push(ch);
-        }
-
-        for(int i=0;i<n2;i++){
-            char ch=t.charAt(i);
-            if(ch=='#'){
-                if(!st2.isEmpty()) 
-            st2.pop();
-            }
-            else st2.push(ch);
-        }
-    return (st1.equals(st2));
+        String str1 = removeString(s);
+        String str2 = removeString(t);
+        System.out.print(str1);
+        return str1.equals(str2);
     }
 }
