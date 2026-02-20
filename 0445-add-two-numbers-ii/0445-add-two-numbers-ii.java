@@ -9,40 +9,40 @@
  * }
  */
 class Solution {
+    // int carry=0;
+    public int getSize(ListNode head){
+    ListNode curr = head;
+    int count=0;
+    while(curr != null){
+        count++;
+        curr = curr.next;
+    }
+    return count;
+}
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        l1 = reverse(l1);
-        l2 = reverse(l2);
-        ListNode d = new ListNode(-1);
-        ListNode ans = d;
-        int sum = 0, c = 0;
-        while (l1 != null || l2 != null) {
-            if (l1 != null) {
-                sum += l1.val;
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                sum += l2.val;
-                l2 = l2.next;
-            }
-            sum += c;
-            ans.next = new ListNode(sum % 10);
-            c = sum / 10;
-            sum = 0;
-            ans = ans.next;
+        int len1 = getSize(l1);
+        int len2 = getSize(l2);
+        while(len1<len2){
+            l1 = new ListNode(0,l1);
+            len1++;
         }
-        if (c > 0)
-            ans.next = new ListNode(c);
-        d = reverse(d.next);
-
-        return d;
+        while(len2<len1){
+            l2 = new ListNode(0,l2);
+            len2++;
+        }
+        int carry[] = new int[1];
+        ListNode ans = addNum(l1,l2,carry);
+        return carry[0]>0? new ListNode(carry[0]  , ans): ans;
     }
 
-    public ListNode reverse(ListNode head) {
-        if (head == null || head.next == null)
-            return head;
-        ListNode revNode = reverse(head.next);
-        head.next.next = head;
-        head.next = null;
-        return revNode;
+    public ListNode addNum(ListNode l1, ListNode l2,int[] carry){
+        if(l1 == null) return null;
+        ListNode nextNode = addNum(l1.next,l2.next,carry);
+        int total = l1.val+l2.val+carry[0];
+        carry[0] = total/10;
+        return new ListNode(total%10,nextNode);
     }
+
+
 }
