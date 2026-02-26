@@ -1,15 +1,16 @@
+import java.math.BigInteger;
+
 class Solution {
     public int numSteps(String s) {
-        int num = Integer.parseInt(s, 2);
+        BigInteger num = new BigInteger(s, 2);
         int count = 0;
-        while (num != 1) {
-            if (num % 2 != 0) {
-                num += 1;
-                count++;
+        while (!num.equals(BigInteger.ONE)) {
+            if (num.mod(BigInteger.TWO).equals(BigInteger.ONE)) {
+                num =num.add(BigInteger.ONE);
             } else {
-                num /= 2;
-                count++;
+                num = num.divide(BigInteger.TWO);
             }
+                count++;
         }
         return count;
 
