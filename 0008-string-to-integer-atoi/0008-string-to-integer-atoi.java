@@ -3,7 +3,8 @@ class Solution {
        s= s.trim();
         int i = 0;
         int sign = 1;
-        if(s.charAt(0) == '+' || s.charAt(0) == '-'){
+        if(s.length() == 0) return 0;
+        if(s.charAt(i) == '+' || s.charAt(i) == '-'){
             sign=(s.charAt(0) == '+')? 1 :-1;
             i++;
         }
