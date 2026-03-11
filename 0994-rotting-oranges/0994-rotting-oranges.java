@@ -3,49 +3,48 @@ class Pair {
     int col;
     int time;
 
-    Pair(int _row, int _col, int _time) {
-        this.row = _row;
-        this.col = _col;
-        this.time = _time;
+    Pair(int row, int col, int time) {
+        this.row = row;
+        this.col = col;
+        this.time = time;
     }
 }
 
 class Solution {
-    private int rowDir[]= {-1, 0, 1, 0};
-    private int colDir[] = {0, 1, 0, -1};
+    int[] rDir = { -1, 0, 1, 0 };
+    int[] cDir = { 0, 1, 0, -1 };
 
     public int orangesRotting(int[][] grid) {
-        Queue<Pair> queue = new LinkedList<>();
+        Queue<Pair> q = new LinkedList<>();
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 2) {
-                    queue.offer(new Pair(i, j, 0));
-                }
+                if (grid[i][j] == 2)
+                    q.offer(new Pair(i, j, 0));
             }
         }
 
         int maxTime = 0;
-        while(!queue.isEmpty()){
-            Pair curr= queue.poll();
-            for(int i = 0; i< 4 ;i++){
-                int newRow = curr.row + rowDir[i];
-                int newCol = curr.col + colDir[i];
-                if(newRow>= 0 && newCol>=0 && newRow < grid.length &&
-                    newCol < grid[0].length && grid[newRow][newCol] == 1){
-                        grid[newRow][newCol]=2;
-                        queue.offer(new Pair(newRow,newCol,curr.time+1));
-                        maxTime = Math.max(curr.time+1,maxTime);
-                    }
-            }
+        while (!q.isEmpty()) {
+            Pair curr = q.poll();
+            for (int i = 0; i < 4; i++) {
+                int newRow = rDir[i] + curr.row;
+                int newCol = cDir[i] + curr.col;
 
-        }
-         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) {
-                    return -1;
+                if (newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length &&
+                        grid[newRow][newCol] == 1) {
+                    grid[newRow][newCol] = 2;
+                    q.offer(new Pair(newRow, newCol, curr.time + 1));
+                    maxTime = Math.max(curr.time + 1, maxTime);
                 }
             }
-         }
-return maxTime;
+        }
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == 1)
+                    return -1;
+            }
+        }
+        return maxTime;
     }
 }
