@@ -8,10 +8,10 @@ class Solution {
         Arrays.sort(str,(a,b)->(b+a).compareTo(a+b));
         if (str[0].equals("0")) return "0";
 
-        StringBuilder sb = new StringBuilder();
+        String sb = "";
         for(String s : str){
-            sb.append(s);
+            sb+=s;
         }
-        return sb.toString();
+        return sb;
     }
 }
