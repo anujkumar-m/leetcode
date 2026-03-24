@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/clumsy-factorial">1006. Clumsy Factorial</a></h2><h3>Medium</h3><hr><p>The <strong>factorial</strong> of a positive integer <code>n</code> is the product of all positive integers less than or equal to <code>n</code>.</p>
+<h2><a href="https://leetcode.com/problems/clumsy-factorial/">1006. Clumsy Factorial</a></h2><h3>Medium</h3><hr><p>The <strong>factorial</strong> of a positive integer <code>n</code> is the product of all positive integers less than or equal to <code>n</code>.</p>
 
 <ul>
 	<li>For example, <code>factorial(10) = 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1</code>.</li>
