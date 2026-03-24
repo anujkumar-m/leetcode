@@ -1,19 +1,26 @@
 class Solution {
     public int clumsy(int n) {
-        int ans=1;
-        if(n<=4){
-            if(n<=2)
-            return n;
-            else if(n==3)
-            return 6;
-            else if(n==4)
-            return 7;
-        }else{
-            if(n%4==1||n%4==2)
-            ans=n+2;
-            else if(n%4==3)
-            ans=n-1;
-            else ans=n+1;
+        Stack<Integer> st = new Stack<>();
+        st.push(n);
+        n--;
+        int ind = 0;
+
+        while(n > 0){
+            if(ind % 4 == 0) st.push(st.pop() * n);
+
+            else if (ind % 4 == 1) st.push(st.pop() / n);
+
+            else if(ind % 4 == 2) st.push(n);
+
+            else st.push(-n);
+
+            ind++;
+            n--;
+        }
+        int ans = 0;
+
+        while(!st.isEmpty()){
+            ans+=st.pop();
         }
         return ans;
     }
