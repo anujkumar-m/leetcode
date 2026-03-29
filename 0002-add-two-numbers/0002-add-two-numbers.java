@@ -14,29 +14,17 @@ class Solution {
         ListNode ans = cur;
         int carry = 0;
     int sum = 0;
-        while(l1 != null  || l2 !=null){
-                if(l1!=null){
-                    sum= l1.val ;
-                    l1 = l1.next;
-                }
-                if(l2!=null){
-                sum += l2.val;
-                l2 = l2.next;
-                }
-                sum+=carry;
-                carry=0;
-                if(sum <= 9){
-                    ans.next = new ListNode(sum);
-                }
-                else {
-                    carry = sum/10;
-                    sum = sum%10;
-                    ans.next = new ListNode(sum);
-                }
-                ans = ans.next;
-                sum = 0;
+        while(l1 != null  || l2 !=null || carry != 0){
+        int v1 = (l1!=null)?l1.val:0;
+        int v2 = (l2!=null)?l2.val:0;
+        sum = v1+ v2 +carry;
+        carry = sum/10;
+        ans.next = new ListNode(sum%10);
+        ans=ans.next;
+
+        if (l1 != null) l1 = l1.next;
+        if (l2 != null) l2 = l2.next;
         }
-       ans.next = carry==0?null:new ListNode(carry);
        return cur.next;
     }
 }
