@@ -7,7 +7,6 @@ class Solution {
             else if (c == 'L')
                 left++;
         }
-        System.out.println(left + " " + right);
         return Math.abs(moves.length() - Math.min(right, left) * 2);
     }
 }
