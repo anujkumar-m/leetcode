@@ -6,10 +6,8 @@ class Solution {
                 if (str.length() > 0)
                     str.deleteCharAt(str.length() - 1);
             } else if (c == '#') {
-                    if (str.length() > 0)
                 str.append(str);
             } else if (c == '%')
-               // if (str.length() > 0)
                     str.reverse();
             else
                 str.append(c);
