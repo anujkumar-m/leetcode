@@ -2,10 +2,11 @@ class Solution {
     public String reversePrefix(String s, int k) {
         StringBuilder str = new StringBuilder(s);
         int i = 0;
-        while(i < k - 1){
+        k -= 1;
+        while(i < k){
             char temp = s.charAt(i);
-            str.setCharAt(i, s.charAt(k - 1));
-            str.setCharAt(k - 1, s.charAt(i));
+            str.setCharAt(i, s.charAt(k));
+            str.setCharAt(k, s.charAt(i));
             k--;
             i++;
         }
