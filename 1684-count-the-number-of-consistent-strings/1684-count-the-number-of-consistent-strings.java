@@ -1,16 +1,20 @@
 class Solution {
     public int countConsistentStrings(String allowed, String[] words) {
         int count = 0;
+        boolean freq[] = new boolean[26];
+        for(char c : allowed.toCharArray()){
+            freq[c - 'a'] = true;
+        }
         for (String s : words) {
-            if (containsWords(allowed, s))
+            if (isConsistent(freq, s))
                 count++;
         }
         return count;
     }
 
-    boolean containsWords(String alw, String s) {
+    boolean isConsistent(boolean[] freq, String s) {
         for (char c : s.toCharArray()) {
-            if (!alw.contains(c + ""))
+            if (!freq[c - 'a'])
                 return false;
         }
         return true;
